@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vending Machine Optimization</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>
+                Simulasi Optimasi Penempatan Mesin Vending di Kampus
+            </h1>
+
+            <p>
+                Implementasi Simple Hill Climbing,
+                Steepest-Ascent Hill Climbing,
+                dan Stochastic Hill Climbing
+            </p>
+        </header>
+
+        <!-- PANEL PARAMETER -->
+        <div class="control-panel">
+
+            <h2>Parameter Simulasi</h2>
+
+            <div class="form-group">
+
+                <label>Algoritma</label>
+
+                <select id="algorithm">
+                    <option value="simple">
+                        Simple Hill Climbing
+                    </option>
+
+                    <option value="steepest">
+                        Steepest-Ascent Hill Climbing
+                    </option>
+
+                    <option value="stochastic">
+                        Stochastic Hill Climbing
+                    </option>
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Jumlah Mahasiswa</label>
+
+                <input
+                    type="number"
+                    id="students"
+                    value="150"
+                    min="50"
+                    max="500"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Radius Layanan</label>
+
+                <input
+                    type="number"
+                    id="radius"
+                    value="4"
+                    min="1"
+                    max="10"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Kecepatan Animasi (ms)</label>
+
+                <input
+                    type="number"
+                    id="speed"
+                    value="500"
+                    min="100"
+                    max="2000"
+                >
+
+            </div>
+
+            <button id="runBtn">
+                Jalankan Simulasi
+            </button>
+
+        </div>
+
+        <!-- AREA VISUALISASI -->
+        <div class="visual-section">
+
+            <div class="canvas-card">
+
+                <h2>Peta Kampus</h2>
+
+                <canvas
+                    id="campusCanvas"
+                    width="700"
+                    height="700">
+                </canvas>
+
+            </div>
+
+            <div class="info-card">
+
+                <h2>Status Pencarian</h2>
+
+                <div id="statusBox">
+
+                    Menunggu simulasi...
+
+                </div>
+
+                <div class="legend">
+
+                    <div>
+                        <span class="dot student"></span>
+                        Mahasiswa
+                    </div>
+
+                    <div>
+                        <span class="dot vending"></span>
+                        Mesin Vending
+                    </div>
+
+                    <div>
+                        <span class="dot path"></span>
+                        Jalur Pencarian
+                    </div>
+
+                    <div>
+                        <span class="dot optimum"></span>
+                        Local Optimum
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- GRAFIK -->
+        <div class="chart-card">
+
+            <h2>Grafik Fitness</h2>
+
+            <canvas id="fitnessChart"></canvas>
+
+        </div>
+
+        <!-- TABEL -->
+        <div class="table-card">
+
+            <h2>Riwayat Iterasi</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Iterasi</th>
+                        <th>Posisi X</th>
+                        <th>Posisi Y</th>
+                        <th>Fitness</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="historyTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='js/simulation.js') }}"></script>
+
+</body>
+</html>
